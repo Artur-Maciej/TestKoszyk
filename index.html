@@ -5,14 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamiczny tekst</title>
     <script>
-        let url = window.location.href;
-        let text = url.split("==")[1]; // Pobiera wszystko po "=="
-        if (text) {
-            document.getElementById("displayText").textContent = decodeURIComponent(text);
+        // Pobranie tekstu z URL
+        function getTextFromURL() {
+            let url = window.location.href;
+            let text = url.split("==")[1]; // Pobiera wszystko po ==
+            if (text) {
+                document.getElementById("displayText").textContent = decodeURIComponent(text);
+            }
         }
     </script>
+    <script>
+    let url = window.location.href;
+    let text = url.split("==")[1]; // Pobiera wszystko po "=="
+    if (text) {
+        document.getElementById("displayText").textContent = decodeURIComponent(text);
+    }
+</script>
+<p id="displayText">Brak tekstu</p>
+
 </head>
-<body>
+<body onload="getTextFromURL()">
     <h1>Tekst z URL:</h1>
     <p id="displayText">Brak tekstu</p>
 </body>
