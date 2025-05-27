@@ -1,22 +1,8 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamiczny tekst</title>
-    <script>
-        // Pobranie tekstu z URL
-        function getTextFromURL() {
-            let url = window.location.href;
-            let text = url.split("==")[1]; // Pobiera wszystko po ==
-            if (text) {
-                document.getElementById("displayText").textContent = decodeURIComponent(text);
-            }
-        }
-    </script>
-</head>
-<body onload="getTextFromURL()">
-    <h1>Tekst z URL:</h1>
-    <p id="displayText">Brak tekstu</p>
-</body>
-</html>
+<script>
+    let url = window.location.href;
+    let text = url.split("==")[1]; // Pobiera wszystko po "=="
+    if (text) {
+        document.getElementById("displayText").textContent = decodeURIComponent(text);
+    }
+</script>
+<p id="displayText">Brak tekstu</p>
