@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamiczny tekst z URL</title>
+    <title>Dynamiczna lista</title>
     <script>
-        // Pobranie wartości z parametrów URL
         function getTextFromURL() {
             let params = new URLSearchParams(window.location.search);
             let text = params.get("text"); // Pobranie wartości po "?text="
             if (text) {
-                document.getElementById("displayText").textContent = decodeURIComponent(text);
+                let items = text.split("|"); // Rozdzielanie wartości po "|"
+                let list = document.getElementById("displayList");
+                list.innerHTML = ""; // Czyszczenie listy przed dodaniem nowych elementów
+                
+                items.forEach(item => {
+                    let li = document.createElement("li");
+                    li.textContent = decodeURIComponent(item);
+                    list.appendChild(li);
+                });
             }
         }
     </script>
 </head>
 <body onload="getTextFromURL()">
-    <h1>Tekst przekazany w URL:</h1>
-    <p id="displayText">Brak tekstu</p>
+    <h1>Lista przedmiotów:</h1>
+    <ul id="displayList">
+        <li>Brak danych</li>
+    </ul>
 </body>
 </html>
