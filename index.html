@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamiczna lista</title>
+    <title>Dynamiczna lista produktów</title>
     <script>
         function getTextFromURL() {
             let params = new URLSearchParams(window.location.search);
             let text = params.get("text"); // Pobranie wartości po "?text="
+
             if (text) {
-                let items = text.split("|"); // Rozdzielanie wartości po "|"
+                let items = text.split("|"); // Rozdzielanie elementów po "|"
                 let list = document.getElementById("displayList");
                 list.innerHTML = ""; // Czyszczenie listy przed dodaniem nowych elementów
                 
                 items.forEach(item => {
-                    let li = document.createElement("li");
-                    li.textContent = decodeURIComponent(item);
-                    list.appendChild(li);
+                    let li = document.createElement("li"); // Tworzenie nowego elementu listy
+                    li.textContent = decodeURIComponent(item.trim()); // Dekodowanie URL i usunięcie zbędnych spacji
+                    list.appendChild(li); // Dodanie do listy
                 });
             }
         }
     </script>
 </head>
 <body onload="getTextFromURL()">
-    <h1>Lista przedmiotów:</h1>
+    <h1>Lista produktów:</h1>
     <ul id="displayList">
         <li>Brak danych</li>
     </ul>
